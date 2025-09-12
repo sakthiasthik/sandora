@@ -322,14 +322,48 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "max7219_led.h"
+#include "esp_log.h"
+#include "mpu6050.h"
+
+
+static const char *TAG = "APP";
 
 void app_main()
 {
-    max7219_init();
+    // max7219_init();
+    // while (1) 
+    // {
+    //     max7219_heartbeat_animation();
+    //     vTaskDelay(pdMS_TO_TICKS(600));
+    // }
 
-    while (1) 
-    {
-        max7219_heartbeat_animation();
-        vTaskDelay(pdMS_TO_TICKS(600));
+        ESP_ERROR_CHECK(mpu6050_init());
+
+    mpu6050_data_t data;
+
+    while (1) {
+        if (mpu6050_read_sensor(&data) == ESP_OK) 
+        {
+            // ESP_LOGI(TAG,
+            //          "Accel [X: %d Y: %d Z: %d] | Gyro [X: %d Y: %d Z: %d] | Temp Raw: %d",
+            //          data.accel_x, data.accel_y, data.accel_z,
+            //          data.gyro_x, data.gyro_y, data.gyro_z,
+            //          data.temperature_raw);
+
+            ESP_LOGI(TAG,
+                    "Accel [X: %.2f g Y: %.2f g Z: %.2f g] | "
+                    "Gyro [X: %.2f °/s Y: %.2f °/s Z: %.2f °/s] | "
+                    "Temp: %.2f °C",
+                    data.accel_x, data.accel_y, data.accel_z,
+                    data.gyro_x, data.gyro_y, data.gyro_z,
+                    data.temperature);
+
+        } else 
+        {
+            ESP_LOGE(TAG, "Failed to read sensor data");
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(2000));
     }
+
 }
