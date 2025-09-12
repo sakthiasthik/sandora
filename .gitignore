@@ -51,5 +51,70 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# debug information files
-*.dwo
+#below list is take from chat gpt
+# ESP-IDF build files 
+*/build/
+#sdkconfig  // remove this then only same sdk can you every where like in other PC 
+sdkconfig.old
+CMakeCache.txt
+cmake-build-*
+*.bin
+*.elf
+*.map
+
+# ESP-IDF Python environment
+*/.env/
+.venv/
+*.pyc
+__pycache__/
+
+# VS Code settings
+*/.vscode/
+*/.vscode-test/
+*/.devcontainer/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+# ESP-IDF downloads
+components/esptool_py/esptool/esptool.egg-info/
+components/esptool_py/esptool/__pycache__/
+tools/__pycache__/
+
+# Optional: exclude personal config/scripts
+*.sh~
+
+
+# Optional: exclude build artifacts based on my windows laptop after runnging
+# idf.py build in windows laptop
+*.check_cache
+/.vscode
+/**/CMakeFiles
+/**/config
+/**/esp-idf
+/**/bootloader-prefix
+/**/gdbinit
+*/project_description.json
+*/partition-table-flash_args
+*/otadata-flash_args
+*/ldgen_libraries.in
+*/ldgen_libraries
+*/kconfigs_projbuild.in
+*/kconfigs.in
+*/flasher_args.json
+*/flash_project_args
+*/flash_bootloader_args
+*/flash_args.in
+*/flash_args
+*/flash_app_args
+*/config.env
+*/compile_commands.json
+*/cmake_install.cmake
+*/build.ninja
+*/bootloader-flash_args
+*/app-flash_args
