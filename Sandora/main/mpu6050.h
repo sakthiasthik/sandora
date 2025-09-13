@@ -124,4 +124,6 @@ const char* orientation_to_string(Orientation_t orientation);
  */
 void mpu6050_test(void);
 
+Orientation_t mpu6050_get_orientation_state(void);
+
 #endif // MPU6050_H

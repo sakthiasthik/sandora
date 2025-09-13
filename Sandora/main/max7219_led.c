@@ -129,7 +129,7 @@ void max7219_update(void)
 }
 
 // ====== HOURGLASS HELPERS ======
-void hourglass_reset(void) 
+void hourglass_reset_led(void) 
 {
     max7219_clear();
 }
@@ -154,7 +154,7 @@ void hourglass_fill_level(uint8_t top_pixels)
 // ====== TEST FUNCTION ======
 void max7219_test_pattern(void) {
     // Step 1: Clear display
-    hourglass_reset();
+    hourglass_reset_led();
 
     // Step 2: Draw diagonal line
     for (uint8_t i = 0; i < 8; i++) {
@@ -165,7 +165,7 @@ void max7219_test_pattern(void) {
     vTaskDelay(pdMS_TO_TICKS(1000));
 
     // Step 3: Fill left half
-    hourglass_reset();
+    hourglass_reset_led();
     for (uint8_t y = 0; y < 8; y++) {
         for (uint8_t x = 0; x < 4; x++) {
             max7219_set_pixel(x, y, true);
@@ -176,7 +176,7 @@ void max7219_test_pattern(void) {
     vTaskDelay(pdMS_TO_TICKS(1000));
 
     // Step 4: Fill entire top matrix
-    hourglass_reset();
+    hourglass_reset_led();
     for (uint8_t y = 0; y < 8; y++) {
         for (uint8_t x = 0; x < 8; x++) {
             max7219_set_pixel(x, y, true);
@@ -186,9 +186,9 @@ void max7219_test_pattern(void) {
     vTaskDelay(pdMS_TO_TICKS(1000));
 
     // Step 5: Simple falling pixels animation
-    hourglass_reset();
+    hourglass_reset_led();
     for (uint8_t y = 0; y < 8; y++) {
-        hourglass_reset();
+        hourglass_reset_led();
         max7219_set_pixel(3, y, true);
         max7219_set_pixel(12, y, true);
         max7219_update();
@@ -196,5 +196,5 @@ void max7219_test_pattern(void) {
     }
 
     // Step 6: Reset display
-    hourglass_reset();
+    hourglass_reset_led();
 }

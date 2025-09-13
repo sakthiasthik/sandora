@@ -374,6 +374,12 @@ esp_err_t mpu6050_get_orientation(mpu6050_orientation_t *orientation)
     return ESP_OK;
 }
 
+Orientation_t mpu6050_get_orientation_state(void) 
+{
+    return MPU6050_GetOrientation();
+}
+
+
 // Testing function
 void mpu6050_test(void) 
 {
