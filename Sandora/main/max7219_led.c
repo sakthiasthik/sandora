@@ -2,8 +2,11 @@
 #include "driver/spi_master.h"
 #include "driver/gpio.h"
 #include <string.h>
+#include "esp_log.h"
 
 static spi_device_handle_t spi_handle;
+
+static const char *TAG = "MAX7219";
 
 // Display buffer (16x8 for 2 chained modules)
 static uint8_t display_buffer[MAX7219_TOTAL_HEIGHT][MAX7219_TOTAL_WIDTH / 8];
@@ -77,6 +80,7 @@ void max7219_init(void)
     max7219_send_cmd_all(0x09, 0x00); // Decode mode: none
     max7219_send_cmd_all(0x0A, 0x08); // Intensity: medium
     max7219_clear();
+    ESP_LOGI(TAG, "Hourglass task started");
 }
 
 void max7219_clear(void) 
