@@ -317,6 +317,24 @@ void max7219_set_pixel(uint8_t x, uint8_t y, bool on)
     else
         display_buffer[y][byte_index] &= ~(1 << bit_index);
 }
+// void max7219_update(void) 
+// {
+//     for (int row = 0; row < MAX7219_MATRIX_HEIGHT; row++) 
+//     {
+//         uint8_t tx_data[MAX7219_CHAINED_DEVICES * 2];
+//         for (int dev = 0; dev < MAX7219_CHAINED_DEVICES; dev++) 
+//         {
+//             tx_data[dev * 2]     = row + 1;
+//             tx_data[dev * 2 + 1] = display_buffer[row][dev];
+//         }
+//         spi_transaction_t t = {
+//             .length = MAX7219_CHAINED_DEVICES * 16,
+//             .tx_buffer = tx_data,
+//         };
+//         spi_device_transmit(spi_handle, &t);
+//     }
+// }
+
 void max7219_update(void) 
 {
     for (int row = 0; row < MAX7219_MATRIX_HEIGHT; row++) 
@@ -325,7 +343,7 @@ void max7219_update(void)
         for (int dev = 0; dev < MAX7219_CHAINED_DEVICES; dev++) 
         {
             tx_data[dev * 2]     = row + 1;
-            tx_data[dev * 2 + 1] = display_buffer[row][dev];
+            tx_data[dev * 2 + 1] = display_buffer[row][dev];  // dev is index of byte; this is correct only if display_buffer is [row][byte]
         }
         spi_transaction_t t = {
             .length = MAX7219_CHAINED_DEVICES * 16,
@@ -334,6 +352,8 @@ void max7219_update(void)
         spi_device_transmit(spi_handle, &t);
     }
 }
+
+
 // ====== HOURGLASS HELPERS ======
 void max7219_clear_display(void)  // Renamed from hourglass_reset_led
 {
