@@ -3062,7 +3062,7 @@
 #define TOTAL_WIDTH (WIDTH * MODULE_COUNT)
 
 // === Global Timing Configuration ===
-#define STABLE_FRAMES_THRESHOLD 30   // Frames to wait before flipping
+#define STABLE_FRAMES_THRESHOLD 10   // Frames to wait before flipping
 #define FRAME_DELAY_MS 1000           // Delay between frames
 #define PARTICLE_DROP_DELAY_MS 2000  // Delay between particle drops
 #define ANIMATION_PAUSE_MS 5000      // Pause between hourglass flips

@@ -300,11 +300,11 @@ static const char *TAG = "MAIN";
 void app_main(void) {
     ESP_LOGI(TAG, "Initializing hardware...");
 
-    esp_err_t mpu_ret = mpu6050_init();
-    if (mpu_ret != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to initialize MPU6050");
-        return;
-    }
+    // esp_err_t mpu_ret = mpu6050_init();
+    // if (mpu_ret != ESP_OK) {
+    //     ESP_LOGE(TAG, "Failed to initialize MPU6050");
+    //     return;
+    // }
 
     ESP_LOGI(TAG, "Starting hourglass animation...");
     hourglass_init();
