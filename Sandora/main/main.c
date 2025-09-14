@@ -161,20 +161,22 @@ void app_main(void)
     
     // Show test pattern first
     ESP_LOGI(TAG, "Displaying test pattern");
-    max7219_test_pattern();
-    vTaskDelay(pdMS_TO_TICKS(3000));
+    // max7219_test_pattern();
+    // vTaskDelay(pdMS_TO_TICKS(3000));
     
-    // Initialize hourglass with 60 second duration for testing
-    hourglass_init(60000);
+    // // Initialize hourglass with 60 second duration for testing
+    // hourglass_init(60000);
     
-    ESP_LOGI(TAG, "Starting hourglass test animation");
+    // ESP_LOGI(TAG, "Starting hourglass test animation");
     
-    // Run the test animation in a loop
-    while (1) 
-    {
-        hourglass_test_animation();
-        vTaskDelay(pdMS_TO_TICKS(5000)); // Wait 5 seconds before restarting
-    }
+    // // Run the test animation in a loop
+    // while (1) 
+    // {
+    //     hourglass_test_animation();
+    //     vTaskDelay(pdMS_TO_TICKS(5000)); // Wait 5 seconds before restarting
+    // }
 
-    // hourglass_turn_on_led();
+    // // hourglass_turn_on_led();
+        hourglass_init();
+    hourglass_start();
 }
